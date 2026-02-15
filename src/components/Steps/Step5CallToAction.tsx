@@ -1,8 +1,9 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { useWizard } from '@/components/Wizard/WizardContext';
 import Button from '@/components/UI/Button';
 import Input from '@/components/UI/Input';
 import { supabase } from '@/lib/supabase';
+import { generatePDF } from '@/utils/pdfGenerator';
 
 const Step5CallToAction = () => {
   const { data, updateData, results } = useWizard();
@@ -39,9 +40,13 @@ const Step5CallToAction = () => {
 
       if (error) throw error;
 
-      // 3. Success Feedback
-      alert('Relatório gerado e dados salvos com sucesso! 🚀');
+      // 3. Success Feedback & PDF Generation
+      alert('Relatório gerado e dados salvos com sucesso! 🚀\nO download do seu plano começará em instantes.');
       console.log('Lead saved:', leadData);
+
+      if (results) {
+        generatePDF(data, results);
+      }
 
     } catch (error) {
       console.error('Error saving lead:', error);
