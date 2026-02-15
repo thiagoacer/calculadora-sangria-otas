@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B2545;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Coin/Revenue (Standard Hotel Revenue) -->
+  <circle cx="50" cy="50" r="45" fill="url(#grad)" stroke="#2FBF71" stroke-width="2" />
+  
+  <!-- The "Bleed" / OTA Commission Slice (Red) -->
+  <path d="M50,50 L50,5 A45,45 0 0,1 92.4,27.5 Z" fill="#E24A4A" />
+  
+  <!-- Percentage Symbol (White, Central) -->
+  <text x="50" y="65" font-family="Arial, sans-serif" font-weight="bold" font-size="40" text-anchor="middle" fill="white">%</text>
+</svg>
