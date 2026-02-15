@@ -1,0 +1,16 @@
+import { describe, it, expect } from 'vitest';
+import { calculateSangria } from './calculations';
+
+// Mocking calculations based on likely function signature. 
+// I'll need to verify the actual function signature first, but creating the placeholder.
+// Actually, let's read the calculations file first to be sure.
+// Wait, I can't read it in this turn if I write this file now.
+// I'll write a basic structure and fill it in the next turn after reading, OR I'll read it now.
+// Better: Read calculations.js first.
+
+// Cancel this tool call? No, I'll just write a generic test and update it.
+// Or better yet, I should read calculations.js in this turn and write the test in the next.
+// But the user wants speed.
+// I'll read calculations.js IN THIS TURN using read_file in parallel? 
+// No, I can't use the output of a parallel tool in the same turn.
+// I will just read calculations.js now and install vitest.

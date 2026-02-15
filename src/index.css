@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0B2545;
+  --color-primary-light: #133a66;
+  --color-secondary: #D6E6F2;
+  --color-accent: #2FBF71;
+  --color-accent-dark: #259d5d;
+  --color-alert: #E24A4A;
+  --color-background: #F7F9FC;
+  --color-text: #111827;
+  --color-text-light: #64748b;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --animate-fadeIn: fadeIn 0.5s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col;
+  }
+
+  #root {
+    @apply w-full;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary font-bold leading-tight;
+  }
+}
