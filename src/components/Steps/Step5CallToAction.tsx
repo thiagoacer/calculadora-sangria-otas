@@ -2,19 +2,51 @@ import React, { ChangeEvent, FormEvent } from 'react';
 import { useWizard } from '@/components/Wizard/WizardContext';
 import Button from '@/components/UI/Button';
 import Input from '@/components/UI/Input';
+import { supabase } from '@/lib/supabase';
 
 const Step5CallToAction = () => {
-  const { data, updateData } = useWizard();
+  const { data, updateData, results } = useWizard();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     updateData({ [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real app, this would submit to an API/CRM
-    alert('Obrigado! Entraremos em contato em breve.');
+
+    try {
+      if (!data.name || !data.whatsapp) {
+        alert('Por favor, preencha pelo menos Nome e WhatsApp.');
+        return;
+      }
+
+      // 1. Prepare data payload
+      const leadData = {
+        name: data.name,
+        hotel_name: data.hotelName,
+        whatsapp: data.whatsapp,
+        email: data.email,
+        monthly_revenue: parseFloat(data.monthlyRevenue.toString()) || 0,
+        ota_percentage: parseFloat(data.otaPercentage.toString()) || 0,
+        commission_rate: parseFloat(data.commissionRate.toString()) || 0,
+        lost_revenue: results?.monthlyCommission || 0,
+        dependency_score: results?.dependencyScore || 'N/A',
+      };
+
+      // 2. Save to Supabase
+      const { error } = await supabase.from('leads_calc_ota').insert([leadData]);
+
+      if (error) throw error;
+
+      // 3. Success Feedback
+      alert('Relatório gerado e dados salvos com sucesso! 🚀');
+      console.log('Lead saved:', leadData);
+
+    } catch (error) {
+      console.error('Error saving lead:', error);
+      alert('Erro ao salvar os dados. Verifique sua conexão.');
+    }
   };
 
   return (
